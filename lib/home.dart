@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
 
@@ -17,7 +16,16 @@ class _HomeState extends State<Home> {
   TextEditingController _controllerCpf = TextEditingController();
 
   _buscar()async{
-    CollectionReference collectionReference = Firestore.instance()
+    CollectionReference collectionReference = Firestore.instance.collection('data');
+    collectionReference.snapshots().listen((snapshot){
+
+      List documents;
+
+      setState(() {
+        documents =snapshot.documents;
+      });
+
+    });
 
 
   }
