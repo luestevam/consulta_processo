@@ -1,5 +1,14 @@
+import 'dart:convert';
 import 'package:consultaprocesso/views/Processo.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+
+// Classe da API
+
+const resquest =
+    "https://api.sheety.co/ca3045a6f4aa2f7e907a4104990bf6a8/consultaProcesso/consultaProcesso";
+
 
 class Home extends StatefulWidget {
 
@@ -9,8 +18,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+
+
+
   TextEditingController _controllerCpf = TextEditingController();
   TextEditingController _controllerContrato = TextEditingController();
+
 
 
   @override

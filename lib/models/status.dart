@@ -1,12 +1,11 @@
 
 
-
 class Status {
-
-  String _titular;
+  String _titular1N;
+  String _titular1C;
   String _cpf;
   String _status;
-  String _numContr;
+  String _numContra;
 
 
   Status();
@@ -14,10 +13,10 @@ class Status {
   Map<String, dynamic> toMap(){
 
     Map<String, dynamic> map = {
-      "titula"  : this.titular,
-      "cpf"     : this.cpf,
+      "titula"  : this.titular1N,
+      "cpf"     : this._titular1C,
       "status"  : this.status,
-      "numContr" : this.numContr
+      "numContr" : this.numContra
     };
 
     return map;
@@ -26,6 +25,13 @@ class Status {
 }
 
   String get status => _status;
+
+
+  String get titular1N => _titular1N;
+
+  set titular1N(String value) {
+    _titular1N = value;
+  }
 
   set status(String value) {
     _status = value;
@@ -37,16 +43,16 @@ class Status {
     _cpf = value;
   }
 
-  String get titular => _titular;
+  String get titular1C => _titular1C;
 
-  set titular(String value) {
-    _titular = value;
+  set titular1C(String value) {
+    _titular1C = value;
   }
 
-  String get numContr => _numContr;
+  String get numContra => _numContra;
 
-  set numContr(String value) {
-    _numContr = value;
+  set numContra(String value) {
+    _numContra = value;
   }
 
 }
