@@ -1,54 +1,43 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import "package:flutter/material.dart";
+import 'package:consultaprocesso/views/Processo.dart';
+import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-  void main() {}
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+
   TextEditingController _controllerCpf = TextEditingController();
+  TextEditingController _controllerContrato = TextEditingController();
 
-  Map data;
-
-  _buscar() async {
-    CollectionReference collectionReference =
-        Firestore.instance.collection('data');
-    collectionReference.snapshots().listen((snapshot) {
-      List documents;
-
-      setState(() {
-        documents = snapshot.documents;
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Teste"),
+        title: Text(""),
       ),
       body: Container(
         padding: EdgeInsets.all(16),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 32, top: 0),
-                  //  child: Image.asset("images/logo.png", width: 190, height: 100,),
+                  padding: EdgeInsets.only(bottom: 32),
+                  child: Image.asset(
+                    "images/logo.png",
+                    width:200,
+                    height: 150,),
                 ),
+
                 TextField(
+                  keyboardType: TextInputType.number,
+                  controller: _controllerCpf,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 25),
-                  inputFormatters: [
-                    //FilteringTextInputFormatter.digitsOnly,
-                    //CpfInputFormatter(),
-                  ],
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
                     hintText: "CPF",
@@ -57,30 +46,43 @@ class _HomeState extends State<Home> {
                         borderRadius: BorderRadius.circular(6)),
                   ),
                 ),
-                SizedBox(height: 20),
+
+                SizedBox(height: 20,),
+
                 TextField(
+                  keyboardType: TextInputType.number,
+                  controller: _controllerContrato,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 25),
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                    hintText: "Contrato",
+                    hintText: "Num Contrato",
                     filled: true,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(6)),
                   ),
-                  controller: _controllerCpf,
                 ),
-                SizedBox(height: 20),
+
+                SizedBox(height: 20,),
+
                 RaisedButton(
-                  color: Colors.green,
-                  textColor: Colors.white,
-                  padding:
-                      EdgeInsets.only(left: 20, right: 20, bottom: 12, top: 12),
                   child: Text(
                     "Buscar",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
-                  onPressed: _buscar,
+                  padding: EdgeInsets.all(15),
+                 onPressed: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Processo()
+                        )
+                    );
+                  },
                 ),
                 SizedBox(height: 20),
                 Column(
@@ -88,8 +90,8 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Text(
                       "Dúvidas? Fale conosco:",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
